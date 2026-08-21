@@ -1,0 +1,26 @@
+spring:
+  threads:
+    virtual:
+      enabled: true
+  application:
+    name: ddd
+  datasource:
+    url: jdbc:postgresql://localhost:54316/postgres?currentSchema=public
+    username: postgres
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+
+server:
+  shutdown: graceful
+
+logging:
+  level:
+    guru.modulith: DEBUG
+    org.springframework.jdbc.core.JdbcTemplate: DEBUG
+
+app:
+  env:
+    context-name: ddd
