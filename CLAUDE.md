@@ -2,9 +2,22 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+For comprehensive development guidelines,
+please refer to [java-guidelines.md](./docs/guidelines/java-guidelines.md), [java-test-guidelines.md](./docs/guidelines/java-test-guidelines.md), and [spring-boot-guidelines.md](./docs/guidelines/spring-boot-guidelines.md).
+
+Please **Keep your replies extremely concise** and **Focus on conveying the key information.**
+**No unnecessary fluff, no long code snippets.**
+
+When working, you can use web search or `context7` mcp to find the relevant documentation if you want to.
+
+Whenever working with any third-party library or something similar, you MUST look up the official documentation to ensure that you are working with up-to-date information.
+Use the `DocsExplorer` subagent for efficient documentation lookup.
+
+---
+
 ## What this is
 
-`guru:ddd` — "The Lab of Domain-Driven Design": a greenfield Spring Boot 4.1.1 / Spring Modulith 2.1.0 sandbox on Java 25. Currently a skeleton (one module `helpdesk`, one record `Color`); most value here is in the conventions, not the code volume.
+`guru:ddd-lab` — "The Lab of Domain-Driven Design": a greenfield Spring Boot 4.1.1 / Spring Modulith 2.1.0 sandbox on Java 25. Currently a skeleton (one module `helpdesk`, one record `RGB`); most value here is in the conventions, not the code volume.
 
 ## Build & test
 
@@ -14,14 +27,14 @@ No Maven wrapper — use the system `mvn` (3.9.x). **Requires JDK 25**; the mach
 JAVA_HOME="C:/dev/java/jdk-25" mvn test-compile
 ```
 
-| Task | Command |
-|---|---|
-| Compile | `mvn compile` |
-| Unit tests (Surefire) | `mvn test` |
-| Single test class | `mvn test -Dtest=ModuleStructureTest` |
-| Single method | `mvn test -Dtest='ModuleStructureTest#ddd_Modules_Form_A_Valid_Structure*'` |
-| Integration tests (`**/*IT.java`, Failsafe) | `mvn verify` |
-| Run app | `mvn spring-boot:run` |
+| Task                                        | Command                                                                     |
+|---------------------------------------------|-----------------------------------------------------------------------------|
+| Compile                                     | `mvn compile`                                                               |
+| Unit tests (Surefire)                       | `mvn test`                                                                  |
+| Single test class                           | `mvn test -Dtest=ModuleStructureTest`                                       |
+| Single method                               | `mvn test -Dtest='ModuleStructureTest#ddd_Modules_Form_A_Valid_Structure*'` |
+| Integration tests (`**/*IT.java`, Failsafe) | `mvn verify`                                                                |
+| Run app                                     | `mvn spring-boot:run`                                                       |
 
 - `.mvn/maven.config` pins `-Dmaven.repo.local=C:/Users/yul/.m2/spring/repository` — a repo separate from the default `~/.m2/repository`. Deps resolve through the Tecsys Artifactory mirror in `~/.m2/settings.xml`; `mvn -o` will fail for anything not already cached there. First online build is slow (>10 min).
 - Surefire is configured with `-Xshare:off` plus an explicit `-javaagent` for mockito-core resolved out of `${settings.localRepository}` — changing the local repo path or the mockito version breaks the argLine.

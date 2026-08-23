@@ -14,10 +14,10 @@
 	</parent>
 
 	<groupId>guru</groupId>
-	<artifactId>ddd</artifactId>
+	<artifactId>ddd-lab</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>ddd</name>
+	<name>ddd-lab</name>
 
 	<description>The Lab of Domain-Driven Design</description>
 
