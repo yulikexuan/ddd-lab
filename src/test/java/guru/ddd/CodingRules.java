@@ -20,7 +20,7 @@ class CodingRules {
 
     @ArchTest
     public static final ArchRule NO_CLASSES_SHOULD_USE_FIELD_INJECTION =
-        GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
+        GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION.allowEmptyShould(true);
 
     @ArchTest
     public static final ArchRule NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING =

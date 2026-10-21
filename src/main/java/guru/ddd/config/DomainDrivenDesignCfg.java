@@ -8,7 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@ComponentScan({ "guru.ddd.helpdesk.config" })
+@ComponentScan({
+        "guru.ddd.identityaccess.config",
+        "guru.ddd.collaboration.config",
+        "guru.ddd.agilepm.config" })
 class DomainDrivenDesignCfg {
 
 } /// :~

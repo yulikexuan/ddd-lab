@@ -31,6 +31,7 @@
 		<mapstruct.version>1.6.3</mapstruct.version>
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 		<modulith.version>2.1.0</modulith.version>
+		<jmolecules-bom.version>2025.0.2</jmolecules-bom.version>
 		<mockito.final.version>${mockito.version}</mockito.final.version>
 		<embedded-database-spring-test.version>2.8.0</embedded-database-spring-test.version>
 		<embedded-postgres.version>2.2.2</embedded-postgres.version>
@@ -48,6 +49,14 @@
 				<version>${modulith.version}</version>
 				<scope>import</scope>
 				<type>pom</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jmolecules</groupId>
+				<artifactId>jmolecules-bom</artifactId>
+				<version>${jmolecules-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 
 			<dependency>
@@ -104,8 +113,23 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.jmolecules</groupId>
+			<artifactId>jmolecules-ddd</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmolecules</groupId>
+			<artifactId>jmolecules-events</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmolecules</groupId>
+			<artifactId>jmolecules-hexagonal-architecture</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.modulith</groupId>
-			<artifactId>spring-modulith-starter-core</artifactId>
+			<artifactId>spring-modulith-starter-jdbc</artifactId>
 		</dependency>
 
 		<dependency>
@@ -185,6 +209,12 @@
 			<groupId>com.tngtech.archunit</groupId>
 			<artifactId>archunit-junit5</artifactId>
 			<version>${archunit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-archunit</artifactId>
 			<scope>test</scope>
 		</dependency>
 

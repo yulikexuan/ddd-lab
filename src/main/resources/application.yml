@@ -4,11 +4,28 @@ spring:
       enabled: true
   application:
     name: ddd
+  task:
+    execution:
+      simple:
+        concurrency-limit: 8 # keep below datasource.hikari.maximum-pool-size
+      shutdown:
+        await-termination: true
+        await-termination-period: 30s
   datasource:
     url: jdbc:postgresql://localhost:54316/postgres?currentSchema=public
     username: postgres
     password: ${DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+  modulith:
+    events:
+      jdbc:
+        schema-initialization:
+          enabled: false # tables owned by schema.sql
+      completion-mode: archive # update (default) | delete | archive
+      republish-outstanding-events-on-restart: false # see event_publication_registry.md §4.2.3
+      registry-trigger-annotation: org.springframework.modulith.events.ApplicationModuleListener
   sql:
     init:
       mode: always

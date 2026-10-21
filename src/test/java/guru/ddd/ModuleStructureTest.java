@@ -21,9 +21,6 @@ class ModuleStructureTest {
 
     private static final String BASE_PACKAGE = "guru.ddd";
 
-    // verify() covers host, statistic and pool: no cycles and no illegal access
-    // to non-exposed internals. pool may reference statistic (events / dto) and
-    // host (readiness) only through their exposed @NamedInterface packages.
     @Test
     void ddd_Modules_Form_A_Valid_Structure_With_Only_Exposed_Cross_Module_Access() {
 
@@ -39,8 +36,8 @@ class ModuleStructureTest {
 
         // Then
         modules.verify();
-        assertThat(moduleNames).hasSize(1)
-                .containsExactlyInAnyOrder("helpdesk");
+        assertThat(moduleNames).hasSize(3)
+                .containsExactlyInAnyOrder("identityaccess", "collaboration", "agilepm");
     }
 
 } /// :~

@@ -1,6 +1,6 @@
 # Spring Boot Guidelines
 
-Coding standards and best practices for this learning project on **Spring Boot 4.0.x** + **Spring Framework 7.0.x** + **Java 25**.
+Coding standards and best practices for this learning project on **Spring Boot 4.1.x** + **Spring Framework 7.0.x** + **Java 25**.
 
 > **Baseline (verified against Spring Boot 4.0 release notes):** Spring Framework 7.0, Spring Security 7.0, Jackson 3.0, Hibernate 7.1, Jakarta EE 10 (Servlet 6.1, Validation 3.1).
 

@@ -17,7 +17,7 @@ Use the `DocsExplorer` subagent for efficient documentation lookup.
 
 ## What this is
 
-`guru:ddd-lab` — "The Lab of Domain-Driven Design": a greenfield Spring Boot 4.1.1 / Spring Modulith 2.1.0 sandbox on Java 25. Currently a skeleton (one module `helpdesk`, one record `RGB`); most value here is in the conventions, not the code volume.
+`guru:ddd-lab` — "The Lab of Domain-Driven Design": a greenfield Spring Boot 4.1.1 / Spring Modulith 2.1.0 sandbox on Java 25. It rebuilds the SaaSOvation case from Vernon's *Implementing Domain-Driven Design* as weekly labs: modules `identityaccess`, `collaboration`, `agilepm`. Roadmap: `docs/iddd/README.md`. In labs the user writes the domain code; Claude scaffolds (spec, failing tests, stubs) and reviews.
 
 ## Build & test
 
@@ -48,8 +48,8 @@ JAVA_HOME="C:/dev/java/jdk-25" mvn test-compile
 
 ```
 DomainDrivenDesignApplication  →  scans guru.ddd.config
-  DomainDrivenDesignCfg        →  scans guru.ddd.helpdesk.config
-    HelpdeskCfg                →  (module-local beans)
+  DomainDrivenDesignCfg        →  scans guru.ddd.{identityaccess,collaboration,agilepm}.config
+    IdentityAccessCfg, …       →  (module-local beans)
 ```
 
 **Adding a module** means: create `guru.ddd.<module>/config/<Module>Cfg.java` (package-private class, like the existing ones), add its config package to `DomainDrivenDesignCfg`'s `@ComponentScan`, and update the expected module list in `ModuleStructureTest`. Skipping any of the three leaves the module invisible or the build red.
@@ -72,7 +72,8 @@ Order in `maven-compiler-plugin` is load-bearing: lombok → lombok-mapstruct-bi
 
 ## Known gaps in the test suite
 
-- `DomainRules` declares an `@ArchTest` rule but **no class in the project carries `@AnalyzeClasses`**, so the rule never executes. Its packages also still reference `com.tecsys.elite.coordinator.*` from a different project. Wire it up (or repoint it at `guru.ddd..`) before relying on it.
+- `DomainRules.DOMAIN_ACCESSING_RULE` and `CodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION` use `allowEmptyShould(true)` (empty codebase). `DOMAIN_ACCESSING_RULE` targets `domain.repository`/`domain.service` — revisit for the hexagonal layout (week 4).
+- jMolecules (`jmolecules-bom` 2025.0.2, same as Modulith pulls) is on the classpath; `jmolecules-archunit` makes `modules.verify()` run DDD rules on jMolecules-annotated types.
 - `DomainDrivenDesignApplicationIT` is `@Disabled` and empty.
 
 ## Code conventions in this repo

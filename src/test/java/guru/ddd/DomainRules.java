@@ -22,6 +22,7 @@ class DomainRules {
             .resideInAnyPackage(
                     "guru.ddd.*.domain.repository..",
                     "guru.ddd.*.domain.service..")
-            .because("Domain model should always be the core of the whole application.");
+            .because("Domain model should always be the core of the whole application.")
+            .allowEmptyShould(true);
 
 } /// :~
