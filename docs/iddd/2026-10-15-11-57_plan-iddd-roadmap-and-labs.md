@@ -1,9 +1,12 @@
 # Plan — IDDD study roadmap + SaaSOvation labs on Boot 4
 
 Book: Vaughn Vernon, *Implementing Domain-Driven Design* (2013), ch 1–14 + App. A (A+ES).
+
 Decisions: new to DDD · SaaSOvation domain · ~1 chapter/week · you code, Claude scaffolds + reviews · delete `helpdesk` · jMolecules annotations + archunit only (no ByteBuddy).
 
 Reference code: `VaughnVernon/IDDD_Samples`. Gradle build, Java 7, Hibernate/MySQL, LevelDB, RabbitMQ. Read it for the ideas only; don't copy its tech choices.
+
+---
 
 ## Step 0 — Setup (Claude, after plan approval) ✅ 2026-10-15
 
@@ -16,6 +19,8 @@ Done. Deviations: no empty sub-packages (git can't track them; labs create them)
 5. `glossary.md`: the Ubiquitous Language glossary. It grows every week.
 6. Verify: `mvn verify` is green.
 
+---
+
 ## Reading method (per chapter, per week)
 
 1. **Skim** (30 min): headings, diagrams, the chapter's "Wrap-Up".
@@ -25,6 +30,8 @@ Done. Deviations: no empty sub-packages (git can't track them; labs create them)
 5. **Commit** `DDD-00NN <Chapter> - <topic>`.
 
 Primer (week 0): *DDD Distilled* (Vernon, ~150 pp) ch 1–5. Before ch 10, also read Vernon's essay series *Effective Aggregate Design* (parts I–III).
+
+---
 
 ## Weekly labs
 
@@ -44,9 +51,11 @@ Primer (week 0): *DDD Distilled* (Vernon, ~150 pp) ch 1–5. Before ch 10, also 
 | 12 | 12 Repositories    | agilepm, identity | One repository per aggregate root, persistence-oriented (`save`); schema per module                                                    | Spring Data JDBC, `schema.sql`, `@DataJdbcTest` + Zonky                                             |
 | 13 | 13 Integrating BCs | collab, agilepm   | Consume IdentityAccess events. ACL translators: `User` → `Collaborator`, `User` → `ProductOwner` / `TeamMember`                        | Published Language as event records in a `@NamedInterface` package; `Scenario` tests                |
 | 14 | 14 Application     | all               | Application services, transactions, REST endpoints; end-to-end: provision tenant → register user → collaborator + team member appear   | `@Transactional`, WebMvc, `@ApplicationModuleTest`                                                  |
-| 15 | App. A A+ES        | collaboration     | Event-sourced `Forum` / `Discussion`: append-only event table, rehydration, optional snapshot                                          | Hand-rolled event store on Postgres; compare with `../event_sourced_domain_model_pattern.md`      |
+| 15 | App. A A+ES        | collaboration     | Event-sourced `Forum` / `Discussion`: append-only event table, rehydration, optional snapshot                                          | Hand-rolled event store on Postgres; compare with `../event_sourced_domain_model_pattern.md`        |
 
 Each lab is done when `mvn verify` is green (tests incl. `ModuleStructureTest` + `ArchitectureTest`), the lab note is written and the review is addressed.
+
+---
 
 ## 2013 → 2026 cheat-sheet (goes in roadmap)
 
@@ -62,6 +71,9 @@ Each lab is done when `mvn verify` is green (tests incl. `ModuleStructureTest` +
 
 ## Risks
 
-- jMolecules integrations versions run separately from `jmolecules-bom`. Confirm Boot 4.1 compatibility before pinning.
-- Typed ids in Spring Data JDBC need converters (wk 5). Look them up in the Spring Data JDBC 4 docs when we get there.
-- Some IDDD_Samples class names were confirmed only from the package lists. Verify them per lab.
+- jMolecules integrations versions run separately from `jmolecules-bom`. 
+  - Confirm Boot 4.1 compatibility before pinning.
+- Typed ids in Spring Data JDBC need converters (wk 5). 
+  - Look them up in the Spring Data JDBC 4 docs when we get there.
+- Some IDDD_Samples class names were confirmed only from the package lists. 
+  - Verify them per lab.
