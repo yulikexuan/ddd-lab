@@ -15,6 +15,8 @@ Reference code: [`VaughnVernon/IDDD_Samples`](https://github.com/VaughnVernon/ID
 
 ## 1. How to Study
 
+**Before week 0:** finish the [jMolecules](../jmolecules/README.md) and [hkj](../hkj/README.md) tracks. The labs below use both.
+
 **Week 0 (primer):** *Domain-Driven Design Distilled* (Vernon, ~150 pp), ch 1–5. It gives you the whole picture before IDDD's detail.
 
 **Every week:**

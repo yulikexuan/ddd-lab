@@ -23,10 +23,10 @@
 
 	<properties>
 		<java.version>25</java.version>
+		<hkj-bom.version>0.5.0</hkj-bom.version>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<hkj-spring-boot-starter.version>0.4.9</hkj-spring-boot-starter.version>
 		<guava.version>33.6.0-jre</guava.version>
 		<mapstruct.version>1.6.3</mapstruct.version>
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
@@ -43,6 +43,14 @@
 
 		<dependencies>
 
+			<dependency>
+				<groupId>io.github.higher-kinded-j</groupId>
+				<artifactId>hkj-bom</artifactId>
+				<version>${hkj-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+   
 			<dependency>
 				<groupId>org.springframework.modulith</groupId>
 				<artifactId>spring-modulith-bom</artifactId>
@@ -72,6 +80,11 @@
 	</dependencyManagement>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>io.github.higher-kinded-j</groupId>
+			<artifactId>hkj-spring-boot-starter</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -113,13 +126,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jmolecules</groupId>
-			<artifactId>jmolecules-ddd</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jmolecules</groupId>
-			<artifactId>jmolecules-events</artifactId>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-starter-ddd</artifactId>
 		</dependency>
 
 		<dependency>
@@ -169,8 +177,8 @@
 
 		<dependency>
 			<groupId>io.github.higher-kinded-j</groupId>
-			<artifactId>hkj-spring-boot-starter</artifactId>
-			<version>${hkj-spring-boot-starter.version}</version>
+			<artifactId>hkj-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -214,7 +222,7 @@
 
 		<dependency>
 			<groupId>org.jmolecules.integrations</groupId>
-			<artifactId>jmolecules-archunit</artifactId>
+			<artifactId>jmolecules-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -258,7 +266,11 @@
 						<path>
 							<groupId>io.github.higher-kinded-j</groupId>
 							<artifactId>hkj-processor-plugins</artifactId>
-							<version>${hkj-spring-boot-starter.version}</version>
+							<version>${hkj-bom.version}</version>
+						</path>
+						<path>
+							<groupId>org.jmolecules.integrations</groupId>
+							<artifactId>jmolecules-apt</artifactId>
 						</path>
 						<path>
 							<groupId>org.mapstruct</groupId>
@@ -266,6 +278,7 @@
 							<version>${mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
+					<annotationProcessorPathsUseDepMgmt>true</annotationProcessorPathsUseDepMgmt>
 					<fork>true</fork>
 					<compilerArgs>
 						<arg>-J--sun-misc-unsafe-memory-access=allow</arg>

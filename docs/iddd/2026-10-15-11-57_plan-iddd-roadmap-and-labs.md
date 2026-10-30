@@ -1,21 +1,28 @@
 # Plan — IDDD study roadmap + SaaSOvation labs on Boot 4
 
-Book: Vaughn Vernon, *Implementing Domain-Driven Design* (2013), ch 1–14 + App. A (A+ES).
-
-Decisions: new to DDD · SaaSOvation domain · ~1 chapter/week · you code, Claude scaffolds + reviews · delete `helpdesk` · jMolecules annotations + archunit only (no ByteBuddy).
-
-Reference code: `VaughnVernon/IDDD_Samples`. Gradle build, Java 7, Hibernate/MySQL, LevelDB, RabbitMQ. Read it for the ideas only; don't copy its tech choices.
+- Book: Vaughn Vernon, *Implementing Domain-Driven Design* (2013), ch 1–14 + App. A (A+ES).
+- Decisions: new to DDD · SaaSOvation domain · ~1 chapter/week · you code, Claude scaffolds + reviews · delete `helpdesk` · jMolecules annotations + archunit only (no ByteBuddy).
+- Reference code: `VaughnVernon/IDDD_Samples`. Gradle build, Java 7, Hibernate/MySQL, LevelDB, RabbitMQ. Read it for the ideas only; don't copy its tech choices.
 
 ---
 
 ## Step 0 — Setup (Claude, after plan approval) ✅ 2026-10-15
 
-Done. Deviations: no empty sub-packages (git can't track them; labs create them). `allowEmptyShould(true)` on `DOMAIN_ACCESSING_RULE` + `NO_CLASSES_SHOULD_USE_FIELD_INJECTION` (no classes yet). jMolecules pinned via `jmolecules-bom` 2025.0.2 → integrations 0.33.0.
+Done. Deviations: no empty sub-packages (git can't track them; labs create them). 
+- `allowEmptyShould(true)` on `DOMAIN_ACCESSING_RULE` + `NO_CLASSES_SHOULD_USE_FIELD_INJECTION` (no classes yet). 
+- jMolecules pinned via `jmolecules-bom` 2025.0.2 → integrations 0.33.0.
 
-1. `README.md`: the roadmap. Reading method, the weekly table below, the 2013→2026 cheat-sheet, and a lab-note template. Link it from the root `README.md`.
-2. Delete `helpdesk` (main + tests). Drop its scan from `DomainDrivenDesignCfg`.
-3. Module skeletons `guru.ddd.{identityaccess,collaboration,agilepm}`. Each gets `config/<X>Cfg` (package-private), `package-info` with `@ApplicationModule`, and empty `domain.model` / `application` / `port.adapter` packages. Add each config package to the `DomainDrivenDesignCfg` scan and update `ModuleStructureTest`.
-4. jMolecules: add `jmolecules-ddd`, `jmolecules-events` and `jmolecules-hexagonal-architecture` (compile scope), plus `jmolecules-archunit` (test scope). Pin versions via javadocs MCP at execution time, Boot 4–compatible line (integrations ≥ 0.32). Modulith `verify()` then runs the jMolecules DDD rules automatically.
+1. `README.md`: the roadmap. Reading method, the weekly table below, the 2013→2026 cheat-sheet, and a lab-note template. 
+   - Link it from the root `README.md`.
+2. Delete `helpdesk` (main + tests). 
+   - Drop its scan from `DomainDrivenDesignCfg`.
+3. Module skeletons `guru.ddd.{identityaccess,collaboration,agilepm}`. 
+   - Each gets `config/<X>Cfg` (package-private), `package-info` with `@ApplicationModule`, and empty `domain.model` / `application` / `port.adapter` packages. 
+   - Add each config package to the `DomainDrivenDesignCfg` scan and update `ModuleStructureTest`.
+4. jMolecules: 
+   - add `jmolecules-ddd`, `jmolecules-events` and `jmolecules-hexagonal-architecture` (compile scope), plus `jmolecules-archunit` (test scope). 
+   - Pin versions via javadocs MCP at execution time, Boot 4–compatible line (integrations ≥ 0.32). 
+   - Modulith `verify()` then runs the jMolecules DDD rules automatically.
 5. `glossary.md`: the Ubiquitous Language glossary. It grows every week.
 6. Verify: `mvn verify` is green.
 

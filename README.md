@@ -1,5 +1,9 @@
 # Domain-Driven Design 
 
+## [jMolecules Study Roadmap](./docs/jmolecules/README.md) 
+
+## [hkj Study Roadmap](./docs/hkj/README.md) 
+
 ## [IDDD Study Roadmap](./docs/iddd/README.md) 
 
 ## [The Domain-Model Pattern](./docs/domain_model_pattern.md) 

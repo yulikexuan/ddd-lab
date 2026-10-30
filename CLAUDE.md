@@ -17,7 +17,7 @@ Use the `DocsExplorer` subagent for efficient documentation lookup.
 
 ## What this is
 
-`guru:ddd-lab` — "The Lab of Domain-Driven Design": a greenfield Spring Boot 4.1.1 / Spring Modulith 2.1.0 sandbox on Java 25. It rebuilds the SaaSOvation case from Vernon's *Implementing Domain-Driven Design* as weekly labs: modules `identityaccess`, `collaboration`, `agilepm`. Roadmap: `docs/iddd/README.md`. In labs the user writes the domain code; Claude scaffolds (spec, failing tests, stubs) and reviews.
+`guru:ddd-lab` — "The Lab of Domain-Driven Design": a greenfield Spring Boot 4.1.2 / Spring Modulith 2.1.2 sandbox on Java 25. It rebuilds the SaaSOvation case from Vernon's *Implementing Domain-Driven Design* as weekly labs: modules `identityaccess`, `collaboration`, `agilepm`. Roadmap: `docs/iddd/README.md`. In labs the user writes the domain code; Claude scaffolds (spec, failing tests, stubs) and reviews.
 
 ## Build & test
 
@@ -62,13 +62,13 @@ Cross-module access must go through `@NamedInterface`-exposed packages; `modules
 
 ### Persistence
 
-Spring Data **JDBC** (not JPA). Runtime Postgres at `localhost:54316`, password from env `DATASOURCE_PASSWORD`, `spring.sql.init.mode=always`. Tests use Zonky embedded Postgres (`embedded-database-spring-test` + `embedded-postgres-binaries` 18.4.0) — there is no `src/test/resources` yet, so any test datasource config must be added.
+Spring Data **JDBC** (not JPA). Runtime Postgres at `localhost:54316`, password from env `DATASOURCE_PASSWORD`, `spring.sql.init.mode=always`. Tests use Zonky embedded Postgres (`embedded-database-spring-test` + `embedded-postgres-binaries` 18.6.0) — there is no `src/test/resources` yet, so any test datasource config must be added.
 
 Virtual threads are on; server shutdown is graceful.
 
 ### Annotation processors
 
-Order in `maven-compiler-plugin` is load-bearing: lombok → lombok-mapstruct-binding → `hkj-processor-plugins` → mapstruct-processor. `hkj-spring-boot-starter` (higher-kinded-j, 0.4.9) generates code at compile time — after touching annotated types, recompile rather than trusting stale `target/generated-sources`.
+Order in `maven-compiler-plugin` is load-bearing: lombok → lombok-mapstruct-binding → `hkj-processor-plugins` → mapstruct-processor. `hkj-processor-plugins` (higher-kinded-j 0.5.0; all hkj artifacts versioned by `hkj-bom` via `${hkj-bom.version}`) generates code at compile time — after touching annotated types, recompile rather than trusting stale `target/generated-sources`.
 
 ## Known gaps in the test suite
 
