@@ -28,7 +28,7 @@ config subset to `application.yml`.
 
 ## Step 1 — `docs/virtual_thread_task_execution.md`
 
-Repo doc conventions: snake_case filename, `#` title, `---` rules, tables, `/// :~` terminator.
+Repo doc conventions: snake_case filename, `#` title, `---` rules, tables.
 
 1. **One-screen answer** — one property, four bean swaps, one silent metrics loss.
 2. **What the flag actually flips** — `Threading.VIRTUAL` gate; table of bean-by-bean swaps

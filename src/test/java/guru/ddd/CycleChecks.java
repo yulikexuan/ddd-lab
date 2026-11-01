@@ -24,4 +24,4 @@ class CycleChecks {
             alwaysTrue())
         .because("Cyclic dependencies within modules should be avoided");
 
-} /// :~
+}

@@ -5,5 +5,3 @@ package guru.ddd.agilepm;
 
 
 import org.springframework.modulith.ApplicationModule;
-
-/// :~

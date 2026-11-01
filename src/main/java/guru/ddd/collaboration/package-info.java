@@ -5,5 +5,3 @@ package guru.ddd.collaboration;
 
 
 import org.springframework.modulith.ApplicationModule;
-
-/// :~

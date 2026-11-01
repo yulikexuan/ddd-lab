@@ -1,17 +1,22 @@
 # jMolecules Study Roadmap
 
-jMolecules puts DDD and architecture concepts into code, as annotations or as interfaces. Tools then check them (ArchUnit, Spring Modulith) or act on them (Spring, Jackson, ByteBuddy).
-The track has 5 weekly labs (`J1`–`J5`). Do it **before** [hkj](../hkj/README.md) and the [IDDD roadmap](../README.md).
+jMolecules puts DDD and architecture concepts into code, as annotations or as interfaces. 
 
-| Artifact in `../../../pom.xml`               | Brings in                                                                                                              |
-|-------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| `jmolecules-starter-ddd`            | `jmolecules-ddd`, `jmolecules-events`, `jmolecules-apt`, `jmolecules-ddd-integration`, `jmolecules-spring` (runtime)   |
-| `jmolecules-hexagonal-architecture` | `@Application`, `@Port`, `@PrimaryPort`, `@SecondaryPort`, `@Adapter`, `@PrimaryAdapter`, `@SecondaryAdapter`          |
-| `jmolecules-starter-test`           | `jmolecules-archunit`, `archunit-junit5`, `spring-boot-starter-test`                                                   |
+Tools then check them (ArchUnit, Spring Modulith) or act on them (Spring, Jackson, ByteBuddy).
+
+The track has 5 weekly labs (`J1`–`J5`). 
+
+Do it **before** [hkj](../hkj/README.md) and the [IDDD roadmap](../README.md).
+
+| Artifact in `../../../pom.xml`      | Brings in                                                                                                            |
+|-------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| `jmolecules-starter-ddd`            | `jmolecules-ddd`, `jmolecules-events`, `jmolecules-apt`, `jmolecules-ddd-integration`, `jmolecules-spring` (runtime) |
+| `jmolecules-hexagonal-architecture` | `@Application`, `@Port`, `@PrimaryPort`, `@SecondaryPort`, `@Adapter`, `@PrimaryAdapter`, `@SecondaryAdapter`        |
+| `jmolecules-starter-test`           | `jmolecules-archunit`, `archunit-junit5`, `spring-boot-starter-test`                                                 |
 
 Versions come from `jmolecules-bom` 2025.0.2: core 2.0.1, integrations 0.33.0.
 
-Sources (more talks and slides in [modeling/jmolecules.md](jmolecules.md)):
+Sources (more talks and slides in [jmolecules.md](jmolecules.md)):
 - [Architecturally evident code with jMolecules](https://odrotbohm.github.io/2021/02/Architecturally-evident-code-with-jMolecules): the author's blog post on why the library exists. Read it before J1.
 - [`odrotbohm/tactical-ddd-workshop`](https://github.com/odrotbohm/tactical-ddd-workshop): the author's workshop on Spring Boot and jMolecules, the closest match to these labs.
 - [`xmolecules/jmolecules`](https://github.com/xmolecules/jmolecules): the core README, plus the annotation and type sources. The source is small, and its Javadoc is the spec.
@@ -19,6 +24,7 @@ Sources (more talks and slides in [modeling/jmolecules.md](jmolecules.md)):
 - [`xmolecules/jmolecules-examples`](https://github.com/xmolecules/jmolecules-examples): last updated around 2023. Read it for ideas only.
 - [`odrotbohm/spring-restbucks`](https://github.com/odrotbohm/spring-restbucks): a full app built with jMolecules by its author.
 - Spring Modulith reference: [Verification](https://docs.spring.io/spring-modulith/reference/verification.html), [Events](https://docs.spring.io/spring-modulith/reference/events.html), [Fundamentals](https://docs.spring.io/spring-modulith/reference/fundamentals.html).
+- [IDDD Samples](https://github.com/VaughnVernon/IDDD_Samples/tree/master)
 
 ---
 
@@ -29,7 +35,7 @@ Sources (more talks and slides in [modeling/jmolecules.md](jmolecules.md)):
 1. **Read** (1–2 h): the week's sources. Open the jMolecules type itself, not just the README.
 2. **Lab** (2–3 h): ask Claude to *"scaffold week J<N>"*. You get a spec, failing tests and TODO stubs. You make the tests green.
 3. **Review:** ask Claude to *"review week J<N>"*, then address the findings.
-4. **Note:** copy the [template](#4-lab-note-template) to ``.
+4. **Note:** copy the [template](#4-lab-note-template) to `docs/iddd/jmolecules/labs/J<N>-<topic>.md`.
 5. **Commit:** `JMOL-000N <topic>`.
 
 **Done when:** `mvn verify` is green (incl. `ModuleStructureTest` and `ArchitectureTest`), the note is written and the review is addressed.
@@ -39,10 +45,13 @@ Sources (more talks and slides in [modeling/jmolecules.md](jmolecules.md)):
 ## 2. Weekly Plan
 
 #### Week J1 · Stereotypes as code — `identityaccess`
-- **Read:** the core README ("annotation-based" vs "type-based" models); `org.jmolecules.ddd.annotation` and `org.jmolecules.ddd.types`.
-- **Look for:** the claim each stereotype makes (`@AggregateRoot`, `@Entity`, `@ValueObject`, `@Identity`, `@Association`, `@Repository`, `@Service`, `@Factory`, `@Module`, `@BoundedContext`). Note what the type model's generics let the compiler enforce, e.g. `AggregateRoot<T extends AggregateRoot<T, ID>, ID extends Identifier>` and `Entity<T extends AggregateRoot<T, ?>, ID>`.
-- **Lab:** model `Tenant`, `TenantId` and `FullName` twice, first with annotations and then with interfaces. Write the trade-offs in the note and keep one.
-- **Boot 4 / Java:** `TenantId` is a record that implements `Identifier` and has a static `of(..)`. Week J5's converters need that factory.
+- **Read:** the [core README](https://github.com/xmolecules/jmolecules) ("annotation-based" vs "type-based" models); `org.jmolecules.ddd.annotation` and `org.jmolecules.ddd.types`.
+- **Look for:** the claim each stereotype makes (`@AggregateRoot`, `@Entity`, `@ValueObject`, `@Identity`, `@Association`, `@Repository`, `@Service`, `@Factory`, `@Module`, `@BoundedContext`). 
+  - Note what the type model's generics let the compiler enforce, e.g. `AggregateRoot<T extends AggregateRoot<T, ID>, ID extends Identifier>` and `Entity<T extends AggregateRoot<T, ?>, ID>`.
+- **Lab:** model `Tenant`, `TenantId` and `FullName` three times: with annotations, with interfaces, then hybrid (annotated aggregate, `TenantId implements Identifier`). 
+  - Write the trade-offs in the note and keep one.
+- **Boot 4 / Java:** `TenantId` is a record that implements `Identifier` and has a static `of(..)`. 
+  - Week J5's converters need that factory.
 
 #### Week J2 · DDD rules — `agilepm`
 - **Read:** `JMoleculesDddRules`; Modulith *Verification*.

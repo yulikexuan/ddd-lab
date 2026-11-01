@@ -1,0 +1,68 @@
+//: guru.ddd.identityaccess.domain.model.identity.annotated.Tenant.java
+
+package guru.ddd.identityaccess.domain.model.identity.annotated;
+
+
+import static guru.ddd.common.util.AssertionConcern.assertArgumentLength;
+import static guru.ddd.common.util.AssertionConcern.assertArgumentNotEmpty;
+
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.ToString;
+import org.jmolecules.ddd.annotation.AggregateRoot;
+import org.jmolecules.ddd.annotation.Identity;
+
+
+@ToString
+@AggregateRoot
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public final class Tenant {
+
+    @Identity
+    @EqualsAndHashCode.Include
+    private final TenantId id;
+
+    private String name;
+
+    private boolean active;
+
+    public Tenant(@NonNull TenantId id, @NonNull String name, boolean active) {
+        this.id = id;
+        this.name(name);
+        this.active = active;
+    }
+
+    public TenantId tenantId() {
+        return id;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    private void name(String name) {
+        assertArgumentNotEmpty(name, "The tenant name is required.");
+        assertArgumentLength(name, 1, 100,
+                "The name must be 100 characters or less.");
+        this.name = name.trim();
+    }
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public void activate() {
+        if (this.isActive()) {
+            return;
+        }
+        this.active = true;
+    }
+
+    public void deactivate() {
+        if (!this.isActive()) {
+            return;
+        }
+        this.active = false;
+    }
+
+}

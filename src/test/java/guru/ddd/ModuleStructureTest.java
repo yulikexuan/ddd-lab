@@ -20,6 +20,7 @@ import org.springframework.modulith.core.ApplicationModules;
 class ModuleStructureTest {
 
     private static final String BASE_PACKAGE = "guru.ddd";
+    private static final int MODULE_COUNT = 4;
 
     @Test
     void ddd_Modules_Form_A_Valid_Structure_With_Only_Exposed_Cross_Module_Access() {
@@ -36,8 +37,8 @@ class ModuleStructureTest {
 
         // Then
         modules.verify();
-        assertThat(moduleNames).hasSize(3)
-                .containsExactlyInAnyOrder("identityaccess", "collaboration", "agilepm");
+        assertThat(moduleNames).hasSize(MODULE_COUNT)
+                .containsExactlyInAnyOrder("common", "identityaccess", "collaboration", "agilepm");
     }
 
-} /// :~
+}

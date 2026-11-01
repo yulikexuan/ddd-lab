@@ -399,5 +399,3 @@ Verified on **2026-09-22** by reading the resolved artifacts in this repo's pinn
 - JFR event names and the `20 ms` pinning threshold — `C:/dev/java/jdk-25/lib/jfr/default.jfc`, JDK 25.0.3
 
 Not verified by running the application: this repo's runtime needs Postgres at `localhost:54316` and `DATASOURCE_PASSWORD`, and has no test datasource configuration yet.
-
-/// :~

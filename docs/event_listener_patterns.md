@@ -686,7 +686,7 @@ class CrmLeadAclTest {
                         .isEqualTo(AcquisitionChannel.WEB));
     }
 
-} /// :~
+}
 ```
 
 Outside `@ApplicationModuleTest`, `Scenario` injection requires `@EnableScenarios`.
@@ -752,5 +752,3 @@ on 2.x — the source history across `spring-modulith-api` versions:
 
 Second: the annotation has a `propagation()` attribute since 1.3, so `REQUIRES_NEW` is an overridable
 default rather than a fixed property of the annotation.
-
-/// :~

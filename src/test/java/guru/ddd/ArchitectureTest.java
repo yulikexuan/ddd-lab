@@ -32,4 +32,4 @@ class ArchitectureTest {
     @ArchTest
     static final ArchTests CYCLE_CHECK = ArchTests.in(CycleChecks.class);
 
-} /// :~
+}

@@ -14,4 +14,4 @@ import org.springframework.context.annotation.Configuration;
         "guru.ddd.agilepm.config" })
 class DomainDrivenDesignCfg {
 
-} /// :~
+}

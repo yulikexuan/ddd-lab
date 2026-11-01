@@ -295,7 +295,7 @@ public sealed interface CrmLeadEvent {
     record LeadStageChanged(String leadId, String stageCode, Instant at)
             implements CrmLeadEvent {}
 
-} /// :~
+}
 ```
 
 Nothing in `sales` may import anything from `crm` outside `guru.ddd.crm.events` — `modules.verify()` enforces it.
@@ -327,7 +327,7 @@ class LeadTranslation {
     private Instant emittedAt;        // the emit-once guard
 
     // ... withers / accessors
-} /// :~
+}
 ```
 
 Two subtleties hide in those few lines 👇
@@ -402,7 +402,7 @@ class CrmLeadAcl {
                 .orElseGet(() -> LeadTranslation.of(leadId));
     }
 
-} /// :~
+}
 ```
 
 `@ApplicationModuleListener` is `org.springframework.modulith.events.ApplicationModuleListener`
@@ -505,7 +505,7 @@ class CrmLeadAclTest {
                         .isEqualTo(AcquisitionChannel.WEB));
     }
 
-} /// :~
+}
 ```
 
 - `Scenario` is injected as a test-method parameter; outside `@ApplicationModuleTest` it needs `@EnableScenarios`.

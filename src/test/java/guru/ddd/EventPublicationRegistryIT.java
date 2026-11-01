@@ -139,4 +139,4 @@ class EventPublicationRegistryIT {
                 "SELECT status, completion_date FROM " + table + " WHERE event_type = ?", type);
     }
 
-} /// :~
+}

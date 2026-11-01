@@ -25,4 +25,4 @@ class DomainRules {
             .because("Domain model should always be the core of the whole application.")
             .allowEmptyShould(true);
 
-} /// :~
+}

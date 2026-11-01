@@ -78,6 +78,6 @@ Order in `maven-compiler-plugin` is load-bearing: lombok → lombok-mapstruct-bi
 
 ## Code conventions in this repo
 
-- Every file opens with `//: <fully.qualified.Name>.java` and closes with `/// :~`.
+- Every file opens with `//: <fully.qualified.Name>.java`. No closing `/// :~` footer — don't add or check for it.
 - Config classes are package-private.
 - Tests use `@DisplayName("... - ")` + `@DisplayNameGeneration(ReplaceUnderscores.class)`, method names in `Snake_Case_Sentences`, and Given/When/Then comment blocks. AssertJ for assertions.
